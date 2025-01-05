@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>Message Thread</title>
+</head>
+<body>
+    <% if (locals.message) { %> 
+        <h1><%= title %></h1> 
+        <div class="message-thread">
+            <p><%= message %></p> 
+            <form action="/" method="GET">
+                <input class="create-post" type="submit" value="Exit">
+            </form>
+        </div>
+    <% } else { %>
+        <p>No message found.</p> 
+    <% } %>
+</body>
+</html>
+

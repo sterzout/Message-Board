@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>Message Board</title>
+</head>
+<body>
+    <div class="clock" id="clock"></div>
+
+    <div class="message-board title-post">
+        <h1>Welcome to the Message Board</h1>
+        <form action="/post" method="GET">
+            <input class="create-post" type="submit" value="Create Post">
+        </form>
+    </div>
+
+    <div class="message-board">
+        <% if (locals.messages) { %>
+            <% var count = 0; %>
+            <% messages.forEach(message => { %>
+                <% message.id = count; %>
+                <% count++; %>
+                <div class="message-thread">
+    
+                    <%= message.id %> 
+                    <form action="/message/<%= message.id %>" method="POST">
+                        <button class="message-title" type="submit">
+                            <h2 class="message-title-text"><%= message.threadTitle %></h2>
+                        </button>
+                    </form>
+                    <% const now = new Date(); %>
+                    <% const year = now.getFullYear(); %>
+                    <% const month = now.getMonth() + 1; %>
+                    <% const day = now.getDate(); %>
+                    <h3 class="date"><%= `${year}-${month}-${day}` %></h3>
+                        <form action="/edit/<%= message.id %>" method="POST" >
+                        <input class="edit" type="submit" value="Edit">
+                    </form>
+                    
+                    <form action="/delete/<%= message.id %>" method="POST">
+                        <input class="delete" type="submit" value="Delete">
+                    </form>
+                    
+                </div>
+                
+            <% }) %>   
+        <% } %>   
+    </div>
+    <script src="/clock.js"></script>
+</body>
+
+</body>
+</html>

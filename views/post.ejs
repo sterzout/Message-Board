@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>Edit Message</title>
+</head>
+<body>
+    <% if (locals.message) { %>
+        <h1>Edit Message</h1>
+        <div class="create-text">
+            <form action="/resubmit" method="POST">
+                <label class="edit-label" for="title">Thread Title:</label>
+                <input class="input-title" type="text" id="title" name="title" required value="<%= title %>"><br><br>
+                <label for="message"></label>
+                <textarea class="input-message" id="message" name="message" rows="5" cols="40" maxlength="500" required><%= message %></textarea><br><br>
+                <input class="create-post" type="submit" value="Submit">
+            </form>
+        </div>
+    <% } else { %>
+        <h1>Create Message</h1>
+        <div class="create-text">
+            <form action="/submit" method="POST">
+                <label class="edit-label" for="title">Thread Title:</label>
+                <input class="input-title" type="text" id="title" name="title" required><br><br>
+                <label for="message"></label>
+                <textarea class="input-message" id="message" name="message" rows="5" cols="40" placeholder="Write your message here..." maxlength="500" required></textarea><br><br>
+                <input class="create-post" type="submit" value="Submit">
+            </form>
+        </div>
+    <% } %>
+</body>
+</html>
